@@ -5,10 +5,10 @@ import { ModeToggle } from "./ModeToggle";
 
 export function Header() {
   return (
-    <header className="w-full  h-28  content-center">
+    <header className="w-full  h-24  content-center ">
       <div className="w-full max-w-[1120px] justify-between items-center flex  mx-auto">
         <div>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 ">
             <RiMoneyEuroCircleFill className="w-9 h-9" />
             <span className="text-lg">
               dev<strong>Money</strong>
