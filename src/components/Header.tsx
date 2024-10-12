@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RiMoneyEuroCircleFill } from "react-icons/ri";
-import { LuFolderClock } from "react-icons/lu";
+import { BsDatabaseAdd } from "react-icons/bs";
 import { ModeToggle } from "./ModeToggle";
 
 export function Header() {
@@ -20,8 +20,10 @@ export function Header() {
             href={""}
             className="bg-background text-foreground text-sm py-1 px-3 content-center border border-border rounded-radius hover:bg-secondary hover:text-secondary-foreground"
           >
-            <span className="hidden md:inline">Histórico</span>
-            <LuFolderClock className="md:hidden" />
+            <span className="hidden md:flex md:gap-2 items-center">
+              Nova transação <BsDatabaseAdd />
+            </span>
+            <BsDatabaseAdd className="md:hidden" />
           </Link>
           <ModeToggle />
         </div>
