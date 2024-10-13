@@ -2,6 +2,7 @@ import Link from "next/link";
 import { RiMoneyEuroCircleFill } from "react-icons/ri";
 import { BsDatabaseAdd } from "react-icons/bs";
 import { ModeToggle } from "./ModeToggle";
+import TypingAnimation from "./ui/typing-animation";
 
 export function Header() {
   return (
@@ -10,9 +11,7 @@ export function Header() {
         <div>
           <span className="flex items-center gap-2 ">
             <RiMoneyEuroCircleFill className="w-9 h-9" />
-            <span className="text-lg">
-              dev<strong>Money</strong>
-            </span>
+            <TypingAnimation text="devMoney" className="text-3xl" />
           </span>
         </div>
         <div className=" flex gap-3">
