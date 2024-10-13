@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { InputSearch } from "@/components/InputSearch";
 import { Summary } from "@/components/Summary";
 import { TableMoney } from "@/components/TableMoney";
 
@@ -14,6 +15,7 @@ export default function Home() {
         className="text-3xl md:text-5xl opacity-5 flex gap-4 my-1 font-semibold"
       />
       <Summary />
+      <InputSearch />
       <TableMoney />
     </div>
   );
