@@ -9,10 +9,12 @@ import {
 } from "@/components/ui/table";
 export function TableMoney() {
   return (
-    <section className="w-full   content-center mt-8 md:mt-14 mx-auto ">
+    <section className="w-full   content-center mt-4 md:mt-6 mx-auto ">
       <div className="w-full max-w-[1120px] items-center justify-around md:justify-between flex  mx-auto ">
         <Table>
-          <TableCaption>Uma lista dos seus gastos recentes.</TableCaption>
+          <TableCaption className="mt-20">
+            Uma lista dos seus gastos recentes.
+          </TableCaption>
           <TableHeader>
             <TableRow className="bg-zinc-100">
               <TableHead className="md:w-[50%] text-xs md:text-sm text-zinc-500">
