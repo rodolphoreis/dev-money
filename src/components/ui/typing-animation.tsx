@@ -31,13 +31,13 @@ export default function TypingAnimation({
     return () => {
       clearInterval(typingEffect);
     };
-  }, [duration, i]);
+  }, [text, duration, i]);
 
   return (
     <h1
       className={cn(
         "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
-        className,
+        className
       )}
     >
       {displayedText ? displayedText : text}
