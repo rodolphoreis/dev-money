@@ -10,8 +10,7 @@ import {
 import { BsDatabaseAdd } from "react-icons/bs";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { FaSearchDollar } from "react-icons/fa";
-import { ComboboxDemo } from "./ui/ComboboxDemo";
+import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
 
 export function NewTransactionModal() {
   return (
@@ -31,10 +30,21 @@ export function NewTransactionModal() {
         <DialogDescription>
           <Input type="text" placeholder="Descrição" className="mb-3" />
           <Input type="text" placeholder="Preço" className="mb-3" />
-          <ComboboxDemo />
+          <Input type="text" placeholder="Categoria" className="mb-3" />
+
+          <div className="flex gap-3 mb-5">
+            <Button type="button" className="flex gap-2 mt-3 w-full">
+              <FaRegArrowAltCircleUp size={18} color="green" />
+              <span className="text-xs ">Entrada</span>{" "}
+            </Button>
+            <Button type="button" className="flex gap-2 mt-3 w-full">
+              <FaRegArrowAltCircleDown size={18} color="red" />
+              <span className="text-xs ">Saída</span>{" "}
+            </Button>
+          </div>
+
           <Button type="submit" className="flex gap-2 mt-3 w-full">
-            <span className="text-xs hidden md:inline-block ">Cadastrar</span>{" "}
-            <FaSearchDollar size={20} />
+            <span className="text-xs  ">Cadastrar</span>{" "}
           </Button>
         </DialogDescription>
       </DialogContent>
