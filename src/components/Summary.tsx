@@ -16,7 +16,7 @@ export function Summary() {
           <strong className="text-lg md:text-2xl">232,50€</strong>
         </ShinyButton>
         <ShinyButton className=" px-4 py-4 md:p-4 md:min-w-52 rounded-md gap-3 text-start">
-          <header className="flex justify-between mb-2 md:mb-5 ">
+          <header className="flex justify-between mb-2 md:mb-5 gap-2">
             <span className="font-extrabold text-xs md:text-base">Saídas</span>
             <FaRegArrowAltCircleDown size={18} color="red" />
           </header>
