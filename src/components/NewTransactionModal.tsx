@@ -19,7 +19,6 @@ export function NewTransactionModal() {
 
   function handlesetSelectedValue(value: string) {
     setSelectedValue(value);
-    console.log(value);
   }
 
   return (
