@@ -7,6 +7,14 @@
       "amount": 2560.39,
       "category": "Salário",
       "createdAt": "2024-10-15T19:40:28.178Z"
+    },
+    {
+      "id": 2,
+      "description": "Compras online",
+      "type": "saida",
+      "amount": 129.99,
+      "category": "Alimentação",
+      "createdAt": "2024-10-15T19:40:28.178Z"
     }
   ]
 }
