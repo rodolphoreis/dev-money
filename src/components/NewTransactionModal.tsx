@@ -13,9 +13,44 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
 import { useState } from "react";
+import axios from "axios";
 
 export function NewTransactionModal() {
   const [selectedValue, setSelectedValue] = useState("entrada");
+  const [data, setData] = useState({
+    description: "",
+    type: "",
+    amount: 0,
+    category: "",
+    createdAt: new Date(),
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    setData({
+      ...data,
+      [event.target.name]: value,
+    });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const userData = {
+      description: data.description,
+      type: (data.type = selectedValue),
+      amount: data.amount,
+      category: data.category,
+      createdAt: new Date(),
+    };
+    axios
+      .post("http://localhost:3001/transactions", userData)
+      .then((response) => {
+        if (response.status === 201) {
+          window.location.reload();
+        }
+      });
+  };
 
   function handlesetSelectedValue(value: string) {
     setSelectedValue(value);
@@ -31,15 +66,37 @@ export function NewTransactionModal() {
           <BsDatabaseAdd />
         </div>
       </DialogTrigger>
-      <form action="">
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Você tem certeza absoluta?</DialogTitle>
-          </DialogHeader>
-          <DialogDescription>
-            <Input type="text" placeholder="Descrição" className="mb-3" />
-            <Input type="text" placeholder="Preço" className="mb-3" />
-            <Input type="text" placeholder="Categoria" className="mb-3" />
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Você tem certeza absoluta?</DialogTitle>
+        </DialogHeader>
+        <DialogDescription>
+          <form onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              placeholder="Descrição"
+              className="mb-3"
+              name="description"
+              value={data.description}
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              placeholder="Preço"
+              className="mb-3"
+              name="amount"
+              value={data.amount}
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              placeholder="Categoria"
+              className="mb-3"
+              name="category"
+              value={data.category}
+              onChange={handleChange}
+            />
 
             <div className="flex gap-3 mb-5">
               <button
@@ -71,11 +128,11 @@ export function NewTransactionModal() {
             </div>
 
             <Button type="submit" className="flex gap-2 mt-3 w-full">
-              <span className="text-xs  ">Cadastrar</span>{" "}
+              Cadastrar
             </Button>
-          </DialogDescription>
-        </DialogContent>
-      </form>
+          </form>
+        </DialogDescription>
+      </DialogContent>
     </Dialog>
   );
 }
