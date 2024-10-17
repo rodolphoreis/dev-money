@@ -20,7 +20,7 @@ export function Summary() {
             <FaRegArrowAltCircleUp size={18} color="green" />
           </header>
           <strong className="text-lg md:text-2xl">
-            {totalEntryIntoTheAccount}€
+            {Number(totalEntryIntoTheAccount).toFixed(2)}€
           </strong>
         </ShinyButton>
         <ShinyButton className=" px-4 py-4 md:p-4 md:min-w-52 rounded-md gap-3 text-start">
@@ -28,15 +28,21 @@ export function Summary() {
             <span className="font-extrabold text-xs md:text-base">Saídas</span>
             <FaRegArrowAltCircleDown size={18} color="red" />
           </header>
-          <strong className="text-lg md:text-2xl">{totalExits}€</strong>
+          <strong className="text-lg md:text-2xl">
+            {Number(totalExits).toFixed(2)}€
+          </strong>
         </ShinyButton>
         <ShinyButton className=" px-4 py-4 md:p-4 md:min-w-52 rounded-md gap-3 text-start">
           <header className="flex justify-between mb-2 md:mb-5 ">
             <span className="font-extrabold text-xs md:text-base">Total</span>
             <BsCurrencyEuro size={18} />
           </header>
-          <strong className="text-lg md:text-2xl w-full">
-            {total.toFixed(2)}€
+          <strong
+            className={`text-lg md:text-2xl w-full ${
+              total < 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {Number(total).toFixed(2)}€
           </strong>
         </ShinyButton>
       </div>
