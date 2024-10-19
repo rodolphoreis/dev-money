@@ -22,6 +22,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { DevMoneyContext } from "../../context/devMoneyContext";
 import axios from "axios";
+import { priceFormatter } from "@/utils/formatter";
 
 function handleDelete(id: string) {
   axios
@@ -80,6 +81,7 @@ export function TableMoney() {
                     }`}
                   >
                     {transaction.type === "saida" && "- "}
+                    {priceFormatter.format(transaction.amount)}
                   </TableCell>
                   <TableCell className="text-xs md:text-sm">
                     {transaction.category}
