@@ -24,6 +24,10 @@ import { DevMoneyContext } from "../../context/devMoneyContext";
 import axios from "axios";
 import { dateFormatter, priceFormatter } from "@/utils/formatter";
 
+interface TableMoneyProps {
+  inputSearch: string;
+}
+
 function handleDelete(id: string) {
   axios
     .delete(`http://localhost:3001/transactions/${id}`)
@@ -37,12 +41,27 @@ function handleDelete(id: string) {
     });
 }
 
-export function TableMoney() {
+const normalizeString = (str: string) => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+};
+
+export function TableMoney({ inputSearch }: TableMoneyProps) {
   const { transactions } = useContext(DevMoneyContext);
 
+  const filteredTransactions = transactions.filter((transaction) => {
+    const searchTerm = inputSearch ? normalizeString(inputSearch.trim()) : "";
+    const description = normalizeString(transaction.description.trim());
+    const category = normalizeString(transaction.category.trim());
+
+    return description.includes(searchTerm) || category.includes(searchTerm);
+  });
+
   return (
-    <section className="w-full   content-center mt-4 md:mt-6 mx-auto ">
-      <div className="hidden md:flex w-full max-w-[1120px] items-center justify-around md:justify-between   mx-auto ">
+    <section className="w-full content-center mt-4 md:mt-6 mx-auto ">
+      <div className="hidden md:flex w-full max-w-[1120px] items-center justify-around md:justify-between mx-auto ">
         <Table>
           <TableCaption className="mt-20">
             Uma lista dos seus gastos recentes.
@@ -67,8 +86,8 @@ export function TableMoney() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {transactions &&
-              transactions.map((transaction) => (
+            {filteredTransactions.length > 0 ? (
+              filteredTransactions.map((transaction) => (
                 <TableRow key={transaction.id}>
                   <TableCell className="font-medium text-xs md:text-sm">
                     {transaction.description}
@@ -89,7 +108,7 @@ export function TableMoney() {
                   <TableCell className="text-xs md:text-sm">
                     {dateFormatter.format(new Date(transaction.createdAt))}
                   </TableCell>
-                  <TableCell className=" flex text-xs md:text-sm content-center justify-center items-center">
+                  <TableCell className="flex text-xs md:text-sm content-center justify-center items-center">
                     <FaRegTrashAlt
                       onClick={() => handleDelete(transaction.id)}
                       size={18}
@@ -97,17 +116,24 @@ export function TableMoney() {
                     />
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center">
+                  Nenhuma transação encontrada.
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>
-      <div className="md:hidden w-full max-w-[1120px] items-center  flex flex-col gap-4 mx-auto ">
-        {transactions &&
-          transactions.map((transaction) => (
+      <div className="md:hidden w-full max-w-[1120px] items-center flex flex-col gap-4 mx-auto ">
+        {filteredTransactions.length > 0 ? (
+          filteredTransactions.map((transaction) => (
             <Card className="w-[95%] " key={transaction.id}>
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle> {transaction.description}</CardTitle>
+                  <CardTitle>{transaction.description}</CardTitle>
                   <FaRegTrashAlt
                     onClick={() => handleDelete(transaction.id)}
                     size={18}
@@ -123,7 +149,7 @@ export function TableMoney() {
                       : "text-red-500"
                   }`}
                 >
-                  {Number(transaction.amount).toFixed(2)}€
+                  {priceFormatter.format(transaction.amount)}
                 </p>
               </CardContent>
               <div className="flex justify-between px-6 mb-5">
@@ -133,7 +159,7 @@ export function TableMoney() {
                     alt="icone de dinheiro"
                     width={20}
                     height={20}
-                  ></Image>
+                  />
                   <span>{transaction.category}</span>
                 </CardDescription>
                 <CardDescription className="flex items-center gap-2">
@@ -142,12 +168,21 @@ export function TableMoney() {
                     alt="icone de calendario"
                     width={20}
                     height={20}
-                  ></Image>
-                  <span>{transaction.createdAt}</span>
+                  />
+                  <span>
+                    {dateFormatter.format(new Date(transaction.createdAt))}
+                  </span>
                 </CardDescription>
               </div>
             </Card>
-          ))}
+          ))
+        ) : (
+          <Card className="w-[95%]">
+            <CardContent>
+              <p className="text-center">Nenhuma transação encontrada.</p>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </section>
   );
