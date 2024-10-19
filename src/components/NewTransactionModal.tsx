@@ -13,7 +13,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
 import { useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/axios";
 
 export function NewTransactionModal() {
   const [selectedValue, setSelectedValue] = useState("entrada");
@@ -43,13 +43,11 @@ export function NewTransactionModal() {
       category: data.category,
       createdAt: new Date(),
     };
-    axios
-      .post("http://localhost:3001/transactions", userData)
-      .then((response) => {
-        if (response.status === 201) {
-          window.location.reload();
-        }
-      });
+    api.post("/transactions", userData).then((response) => {
+      if (response.status === 201) {
+        window.location.reload();
+      }
+    });
   };
 
   function handlesetSelectedValue(value: string) {
