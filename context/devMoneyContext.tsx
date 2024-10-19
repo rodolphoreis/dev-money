@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import { api } from "@/lib/axios";
 import { createContext, useEffect, useState } from "react";
 
 export interface transactionsInterface {
@@ -34,9 +34,8 @@ export default function DevMoneyContextProvider({
   const [total, setTotal] = useState<number>(0);
 
   async function GetDevMoney() {
-    const url = "http://localhost:3001/transactions";
     try {
-      const response = await axios.get(url);
+      const response = await api.get("/transactios");
       const data = await response.data;
       setTransactions(data);
     } catch (error) {
