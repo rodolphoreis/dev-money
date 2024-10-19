@@ -79,7 +79,7 @@ export function TableMoney() {
                         : "text-red-500"
                     }`}
                   >
-                    {Number(transaction.amount).toFixed(2)}€
+                    {transaction.type === "saida" && "- "}
                   </TableCell>
                   <TableCell className="text-xs md:text-sm">
                     {transaction.category}
