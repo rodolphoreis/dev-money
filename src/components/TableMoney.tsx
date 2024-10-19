@@ -22,7 +22,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { DevMoneyContext } from "../../context/devMoneyContext";
 import axios from "axios";
-import { priceFormatter } from "@/utils/formatter";
+import { dateFormatter, priceFormatter } from "@/utils/formatter";
 
 function handleDelete(id: string) {
   axios
@@ -87,7 +87,7 @@ export function TableMoney() {
                     {transaction.category}
                   </TableCell>
                   <TableCell className="text-xs md:text-sm">
-                    {transaction.createdAt}
+                    {dateFormatter.format(new Date(transaction.createdAt))}
                   </TableCell>
                   <TableCell className=" flex text-xs md:text-sm content-center justify-center items-center">
                     <FaRegTrashAlt
