@@ -113,6 +113,7 @@ export function TableMoney({ inputSearch }: TableMoneyProps) {
                       onClick={() => handleDelete(transaction.id)}
                       size={18}
                       color="red"
+                      style={{ transform: "scale(.8)" }}
                     />
                   </TableCell>
                 </TableRow>
@@ -138,6 +139,7 @@ export function TableMoney({ inputSearch }: TableMoneyProps) {
                     onClick={() => handleDelete(transaction.id)}
                     size={18}
                     color="red"
+                    style={{ transform: "scale(.8)" }}
                   />
                 </div>
               </CardHeader>
