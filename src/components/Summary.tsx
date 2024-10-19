@@ -39,10 +39,10 @@ export function Summary() {
           </header>
           <strong
             className={`text-lg md:text-2xl w-full ${
-              total < 0 ? "text-red-500" : "text-green-500"
+              total < 0 ? "text-red-500" : total > 0 ? "text-green-500" : ""
             }`}
           >
-            {Number(total).toFixed(2)} €
+            {Number(total.toFixed(2))} €
           </strong>
         </ShinyButton>
       </div>
