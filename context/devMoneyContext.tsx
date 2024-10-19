@@ -49,7 +49,6 @@ export default function DevMoneyContextProvider({
   }, []);
 
   useEffect(() => {
-    console.log("Transações:", transactions);
     const accountEntry = transactions.filter((item) => item.type === "entrada");
     const sumEntry = accountEntry.reduce(
       (acc: number, curr: transactionsInterface) => acc + curr.amount,
@@ -57,15 +56,15 @@ export default function DevMoneyContextProvider({
     );
 
     const exit = transactions.filter((item) => item.type === "saida");
-    console.log("Saídas filtradas:", exit);
+
     const sumExit = exit.reduce(
-      (acc: number, curr: transactionsInterface) => acc + curr.amount,
+      (acc: number, curr: transactionsInterface) => acc + Number(curr.amount),
       0
     );
 
     settotalEntryIntoTheAccount(sumEntry);
     setTotalExits(sumExit);
-    setTotal(sumEntry - sumExit);
+    setTotal(Math.round((sumEntry - sumExit) * 100) / 100);
   }, [transactions]);
 
   return (
