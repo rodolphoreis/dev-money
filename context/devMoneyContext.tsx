@@ -51,7 +51,7 @@ export default function DevMoneyContextProvider({
   useEffect(() => {
     const accountEntry = transactions.filter((item) => item.type === "entrada");
     const sumEntry = accountEntry.reduce(
-      (acc: number, curr: transactionsInterface) => acc + curr.amount,
+      (acc: number, curr: transactionsInterface) => acc + Number(curr.amount),
       0
     );
 
