@@ -20,7 +20,7 @@ export function Summary() {
             <FaRegArrowAltCircleUp size={18} color="green" />
           </header>
           <strong className="text-lg md:text-2xl">
-            {Number(totalEntryIntoTheAccount).toFixed(2)}€
+            {Number(totalEntryIntoTheAccount).toFixed(2)} €
           </strong>
         </ShinyButton>
         <ShinyButton className=" px-4 py-4 md:p-4 md:min-w-52 rounded-md gap-3 text-start">
@@ -29,7 +29,7 @@ export function Summary() {
             <FaRegArrowAltCircleDown size={18} color="red" />
           </header>
           <strong className="text-lg md:text-2xl">
-            {Number(totalExits).toFixed(2)}€
+            {Number(totalExits).toFixed(2)} €
           </strong>
         </ShinyButton>
         <ShinyButton className=" px-4 py-4 md:p-4 md:min-w-52 rounded-md gap-3 text-start">
@@ -42,7 +42,7 @@ export function Summary() {
               total < 0 ? "text-red-500" : "text-green-500"
             }`}
           >
-            {Number(total).toFixed(2)}€
+            {Number(total).toFixed(2)} €
           </strong>
         </ShinyButton>
       </div>
