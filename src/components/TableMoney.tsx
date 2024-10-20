@@ -21,16 +21,16 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import Image from "next/image";
 import { useContext } from "react";
 import { DevMoneyContext } from "../../context/devMoneyContext";
-import axios from "axios";
 import { dateFormatter, priceFormatter } from "@/utils/formatter";
+import { api } from "@/lib/axios";
 
 interface TableMoneyProps {
   inputSearch: string;
 }
 
 function handleDelete(id: string) {
-  axios
-    .delete(`http://localhost:3001/transactions/${id}`)
+  api
+    .delete(`/transactions/${id}`)
     .then((response) => {
       if (response.status === 200) {
         window.location.reload();
