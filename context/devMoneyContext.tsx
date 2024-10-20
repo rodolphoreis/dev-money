@@ -35,7 +35,12 @@ export default function DevMoneyContextProvider({
 
   async function GetDevMoney() {
     try {
-      const response = await api.get("/transactios");
+      const response = await api.get("/transactions", {
+        params: {
+          _sort: "createdAt",
+          _order: "desc",
+        },
+      });
       const data = await response.data;
       setTransactions(data);
     } catch (error) {
