@@ -52,7 +52,7 @@ No modo de produção, o aplicativo não terá dados disponíveis, pois o JSON S
 - Modos Claro e Escuro: O devMoney oferece a opção de alternar entre os modos claro e escuro, proporcionando uma interface personalizável e confortável para os usuários.
 
 ## Imagens do Projeto
-public/1.png
+
 ![Tela Inicial](public/1.png)  
 _Home - Modo claro_
 
