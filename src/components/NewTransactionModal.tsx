@@ -42,6 +42,7 @@ export function NewTransactionModal() {
       amount: data.amount,
       category: data.category,
       createdAt: new Date(),
+      updatedAt: new Date(),
     };
     api.post("/transactions", userData).then((response) => {
       if (response.status === 201) {

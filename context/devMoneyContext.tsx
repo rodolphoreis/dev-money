@@ -10,6 +10,7 @@ export interface transactionsInterface {
   amount: number;
   category: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 interface ContextInterface {
