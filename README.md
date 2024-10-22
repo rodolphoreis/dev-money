@@ -1,7 +1,7 @@
 # devMoney
 
 ## Deploy
-Este projeto está disponível online. Acesse a versão deployada [aqui](https://dev-money-reisdev.vercel.app/) (clique com o botão direito e escolha "Abrir link em uma nova aba").
+Este projeto está disponível online. Acesse a versão deployada [aqui](https://dev-money-rreis.vercel.app/) (clique com o botão direito e escolha "Abrir link em uma nova aba").
 
 ## Instalação
 Para começar a usar este projeto, siga estas etapas:
